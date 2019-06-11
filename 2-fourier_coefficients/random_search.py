@@ -9,7 +9,7 @@ min_x = -max_x
 scale = 2 * np.pi / (max_x - min_x)
 num_points = 300
 n = 10
-steps = 10000
+steps = 1000
 x = np.linspace(min_x, max_x, num_points)
 
 #####################################
