@@ -40,28 +40,37 @@ def make_wav():
 # Properties of the sound file.
 #########################################################################
 min_freq = 200
-max_freq = 600
+max_freq = 800
 
 #########################################################################
 # K is the number of sections stitched together to produce the audio file.
 #########################################################################
-k = 150
-t = np.linspace(0,10,k)
+
+n = np.arange(1,100)
 
 #########################################################################
 # yt is the function of t we are making the sound for.
 # Freqs contains the frequencies corresponding to f(x).
 #########################################################################
-yt = t * t
+an = (-1) ** n
+bn = n
 
-yt = (yt - min(yt)) / max(yt)
-freqs = min_freq + (max_freq - min_freq) * yt
+freqs_2 = (bn - min(bn)) / max(bn)
+freqs_2 = min_freq + (max_freq - min_freq) * bn
+
+
+freqs = (an - min(an)) / (max(an) - min(an))
+freqs = min_freq + (max_freq - min_freq) * an
 
 #########################################################################
 # Adds the pieces to the main audio file.
 #########################################################################
 for i, freq in enumerate(freqs):
-    beep = gen_sound_data(freq, length / k)
-    add(beep, i * length / k)
+    beep = gen_sound_data(freq, 0.1)
+    add(beep, i * 0.1)
+#
+# for i, freq in enumerate(freqs_2):
+#     beep = gen_sound_data(freq, 0.1)
+#     add(beep, i * 0.1)
 
 make_wav()
